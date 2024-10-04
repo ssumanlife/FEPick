@@ -11,8 +11,6 @@ module.exports = {
     "plugin:prettier/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
-    "next", // 추가
-    "next/core-web-vitals", // 추가
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {

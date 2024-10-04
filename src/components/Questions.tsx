@@ -1,26 +1,23 @@
-"use client"
 import { useState, useEffect } from "react"
 import { css } from "@emotion/react"
-import { useRouter } from "next/router"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { QuestionData } from "@/types/quizType"
 
 interface QuestionsProps {
-  selectedQuestion: {
-    id: string
-    question: string
-    options: string[]
-    answer: string
-  }
+  selectedQuestion: QuestionData
   setStop: (stop: boolean) => void
 }
 
-const Question = ({ selectedQuestion, setStop }: QuestionsProps) => {
+const Questions = ({ selectedQuestion, setStop }: QuestionsProps) => {
   const [checkedIndex, setCheckedIndex] = useState<number | null>(null)
   const [checkedOption, setCheckedOption] = useState<string | null>(null)
   const [correctIndex, setCorrectIndex] = useState<number | null>(null)
   const [correct, setCorrect] = useState<boolean | null>(null)
-  const router = useRouter()
-  const { category } = router.query
-  const questionId = router.query.questionId || 1
+  const { category } = useParams()
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const questionId = new URLSearchParams(location.search).get("questionId") || 1
 
   useEffect(() => {
     setCheckedIndex(null)
@@ -50,7 +47,7 @@ const Question = ({ selectedQuestion, setStop }: QuestionsProps) => {
 
   const handleNext = () => {
     const nextId = Number(questionId) + 1
-    router.push(`/${category}?questionId=${nextId}`)
+    navigate(`/${category}?questionId=${nextId}`)
   }
 
   return (
@@ -82,7 +79,7 @@ const Question = ({ selectedQuestion, setStop }: QuestionsProps) => {
   )
 }
 
-export default Question
+export default Questions
 
 const itemWrapper = (
   checkedIndex: number | null,

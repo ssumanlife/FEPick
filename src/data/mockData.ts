@@ -1,5 +1,5 @@
 export const data = {
-  javascript: [
+  Javascript: [
     {
       id: "1",
       question: "다음 중 JavaScript에서 원시 타입(primitive type)이 아닌 것은 무엇입니까?",
@@ -186,7 +186,7 @@ export const data = {
       answer: "숫자가 아님",
     },
   ],
-  html: [
+  HTML5: [
     {
       id: "1",
       question: "다음 중 HTML에서 문서의 제목을 나타내는 태그는 무엇입니까?",
@@ -368,7 +368,7 @@ export const data = {
       answer: "<textarea>",
     },
   ],
-  css3: [
+  CSS3: [
     {
       id: "1",
       question: "CSS에서 텍스트의 색상을 설정하는 속성은 무엇입니까?",
@@ -565,7 +565,7 @@ export const data = {
       answer: "부모 요소의 너비를 기준으로 너비가 설정됩니다.",
     },
   ],
-  react: [
+  React: [
     {
       id: "1",
       question: "React에서 컴포넌트를 정의할 때 사용하는 함수는 무엇입니까?",
@@ -768,7 +768,7 @@ export const data = {
       answer: "useEffect",
     },
   ],
-  typescript: [
+  Typescript: [
     {
       id: "1",
       question: "TypeScript는 JavaScript에 어떤 기능을 추가한 언어입니까?",
@@ -1005,7 +1005,7 @@ export const data = {
       answer: "interface",
     },
   ],
-  nextjs: [
+  NextJS: [
     {
       id: "1",
       question: "Next.js는 어떤 종류의 프레임워크입니까?",

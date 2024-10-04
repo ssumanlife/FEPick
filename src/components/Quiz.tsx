@@ -1,29 +1,18 @@
-"use client"
 import { useEffect, useState } from "react"
 import { css } from "@emotion/react"
-import { useRouter } from "next/router"
-import QuizItem from "@/components/Question"
+import { useLocation, useParams } from "react-router-dom"
+import Questions from "@/components/Questions"
 import { data } from "@/data/mockData"
+import { DataType } from "@/types/quizType"
 
-interface QuestionData {
-  id: string
-  question: string
-  options: string[]
-  answer: string
-}
-
-interface DataType {
-  javascript: QuestionData[]
-  html: QuestionData[]
-}
-
-const MultipleChoice = () => {
+const Quiz = () => {
   const [stop, setStop] = useState(false)
   const [startTime, setStartTime] = useState<number | null>(null)
   const [elapsedTime, setElapsedTime] = useState(0)
-  const router = useRouter()
-  const { category } = router.query
-  const questionId = router.query.questionId || 1
+  const { category } = useParams()
+  const location = useLocation()
+
+  const questionId = new URLSearchParams(location.search).get("questionId") || 1
 
   useEffect(() => {
     setStartTime(performance.now())
@@ -63,14 +52,14 @@ const MultipleChoice = () => {
           <div css={timeBar(stop, width)}> </div>
           <h1 css={{ fontSize: "20px" }}>Question {selectedQuestion.id}</h1>
           <h1 css={{ padding: "20px" }}>{selectedQuestion.question}</h1>
-          <QuizItem selectedQuestion={selectedQuestion} setStop={setStop} />
+          <Questions selectedQuestion={selectedQuestion} setStop={setStop} />
         </div>
       </div>
     </section>
   )
 }
 
-export default MultipleChoice
+export default Quiz
 const pageWarapper = css`
   width: 100%;
   display: flex;
@@ -81,6 +70,8 @@ const pageWarapper = css`
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  background-color: #fff;
+  color: black;
 `
 
 const timeBar = (stop: boolean | null, width: number) => css`
