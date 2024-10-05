@@ -116,8 +116,6 @@ section {
 }
 body {
   line-height: 1;
-  display: flex;
-  justify-content: center;
 }
 menu,
 ol,
@@ -155,7 +153,7 @@ textarea {
 }
 
 body {
-  background-color: #232323;
+  background-color: #fff;
   color: #fff;
 }
 

@@ -2,17 +2,20 @@ import { useState, useEffect } from "react"
 import { css } from "@emotion/react"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { QuestionData } from "@/types/quizType"
+import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
 
 interface QuestionsProps {
   selectedQuestion: QuestionData
   setStop: (stop: boolean) => void
+  stop: boolean
 }
 
-const Questions = ({ selectedQuestion, setStop }: QuestionsProps) => {
+const Questions = ({ selectedQuestion, setStop, stop }: QuestionsProps) => {
   const [checkedIndex, setCheckedIndex] = useState<number | null>(null)
   const [checkedOption, setCheckedOption] = useState<string | null>(null)
   const [correctIndex, setCorrectIndex] = useState<number | null>(null)
   const [correct, setCorrect] = useState<boolean | null>(null)
+  const incrementCorrect = useNumOfCorrectStore((state) => state.incrementCorrect)
   const { category } = useParams()
   const location = useLocation()
   const navigate = useNavigate()
@@ -35,9 +38,11 @@ const Questions = ({ selectedQuestion, setStop }: QuestionsProps) => {
   }
 
   const handleSubmit = () => {
+    if (!checkedIndex) return
     if (checkedOption === selectedQuestion.answer) {
       setCorrect(true)
       setStop(true)
+      incrementCorrect()
     } else {
       setCorrect(false)
       setStop(true)
@@ -45,9 +50,18 @@ const Questions = ({ selectedQuestion, setStop }: QuestionsProps) => {
     }
   }
 
+  if (stop && correct === null) {
+    setCorrect(false)
+    setCorrectIndex(selectedQuestion.options.findIndex((o) => o === selectedQuestion.answer))
+  }
+
   const handleNext = () => {
     const nextId = Number(questionId) + 1
-    navigate(`/${category}?questionId=${nextId}`)
+    if (nextId === 31) {
+      navigate("/clearQuiz")
+    } else {
+      navigate(`/${category}?questionId=${nextId}`)
+    }
   }
 
   return (
@@ -65,8 +79,8 @@ const Questions = ({ selectedQuestion, setStop }: QuestionsProps) => {
         ))}
       </ul>
       <div css={{ display: "flex", justifyContent: "end" }}>
-        {correct ? (
-          <button css={[submitBtn, { marginLeft: "10px" }]} onClick={handleNext}>
+        {stop ? (
+          <button css={submitBtn} onClick={handleNext}>
             다음
           </button>
         ) : (
@@ -90,41 +104,49 @@ const itemWrapper = (
   display: flex;
   align-items: center;
   background: #fff;
-  border: 1px solid #d6d6d6;
   border-radius: 50px;
   height: 3rem;
   width: 100%;
   padding-left: 2rem;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
+  font-size: 1rem;
   transition: all 0.2s ease-in-out;
   ${checkedIndex === index &&
   correct === null &&
   `
-    border: 2px solid #f75e43;
+    border: 3px solid #f75e43;
+    transform: scale(1.05);
   `}
   ${checkedIndex === index &&
   correct === true &&
   `
-    border: 1px solid #21c501;
+    background: #6ffd52;
+    transform: scale(1.05);
+    border: 3px solid #42ad2d;
   `}
   ${checkedIndex === index &&
   correct === false &&
   `
-    border: 1px solid #ff0000;
+    background: #d92727;
   `}
   ${correctIndex === index &&
   correct === false &&
   `
-    border: 1px solid #21c501;
+    background: #6ffd52;
+    transform: scale(1.05);
+    border: 3px solid #42ad2d;
   `}
 `
 
 const submitBtn = css`
+  width: 100%;
+  height: 3rem;
   background-color: #ff735e;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 50px;
   padding: 5px 20px;
+  font-size: 1rem;
   cursor: pointer;
   &:hover {
     background-color: #f75e43;
