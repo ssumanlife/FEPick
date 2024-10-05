@@ -26,6 +26,7 @@ const Questions = ({ selectedQuestion, setStop, stop }: QuestionsProps) => {
     setCheckedIndex(null)
     setCheckedOption(null)
     setCorrect(null)
+    setCorrectIndex(null)
   }, [questionId, category])
 
   if (!category) {
@@ -38,7 +39,7 @@ const Questions = ({ selectedQuestion, setStop, stop }: QuestionsProps) => {
   }
 
   const handleSubmit = () => {
-    if (!checkedIndex) return
+    if (!checkedOption) return
     if (checkedOption === selectedQuestion.answer) {
       setCorrect(true)
       setStop(true)

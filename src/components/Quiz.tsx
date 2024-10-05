@@ -22,6 +22,7 @@ const Quiz = () => {
     setStartTime(performance.now())
     setStop(false)
     setElapsedTime(0)
+    setTimeOver(false)
   }, [questionId])
 
   useEffect(() => {
