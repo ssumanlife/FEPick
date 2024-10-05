@@ -5,6 +5,7 @@ import Questions from "@/components/Questions"
 import { data } from "@/data/mockData"
 import { DataType } from "@/types/quizType"
 import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
+import TimeOver from "@/components/TimeOver"
 
 const Quiz = () => {
   const [stop, setStop] = useState(false)
@@ -70,7 +71,7 @@ const Quiz = () => {
           <p>
             정답: {numOfCorrect} / 총 문항: {answersNum}
           </p>
-          {timeover ? <p>시간초과</p> : null}
+          {timeover ? <TimeOver /> : null}
         </div>
       </div>
     </section>
