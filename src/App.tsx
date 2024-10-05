@@ -12,5 +12,8 @@ function App() {
 
 export default App
 const wrapper = css`
-  width: 400px;
+  max-width: 498px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: #232323;
 `
