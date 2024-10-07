@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { css } from "@emotion/react"
 import { useLocation, useParams } from "react-router-dom"
 import Questions from "@/components/Questions"
@@ -6,6 +6,7 @@ import { data } from "@/data/mockData"
 import { DataType } from "@/types/quizType"
 import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
 import TimeOver from "@/components/TimeOver"
+import warningSound from "@/assets/warningSound.mp3"
 
 const Quiz = () => {
   const [stop, setStop] = useState(false)
@@ -15,6 +16,7 @@ const Quiz = () => {
   const numOfCorrect = useNumOfCorrectStore((state) => state.numOfCorrect)
   const { category } = useParams()
   const location = useLocation()
+  const warningRef = useRef<HTMLAudioElement>(null)
 
   const questionId = new URLSearchParams(location.search).get("questionId") || 1
 
@@ -29,7 +31,7 @@ const Quiz = () => {
     if (!stop) {
       const interval = setInterval(() => {
         const currentTime = performance.now()
-        const timeElapsed = Math.min((currentTime - (startTime || 0)) / 1000, 60)
+        const timeElapsed = Math.min((currentTime - (startTime || 0)) / 1000, 30)
         setElapsedTime(timeElapsed)
       }, 100)
 
@@ -38,7 +40,7 @@ const Quiz = () => {
   }, [stop, startTime])
 
   const calculateWidth = () => {
-    const percent = (elapsedTime / 60) * 100
+    const percent = (elapsedTime / 30) * 100
     return percent
   }
 
@@ -48,6 +50,9 @@ const Quiz = () => {
     if (width >= 100 && !stop) {
       setStop(true)
       setTimeOver(true)
+      if (warningRef.current) {
+        warningRef.current.play()
+      }
     }
   }, [width, stop])
 
@@ -55,20 +60,21 @@ const Quiz = () => {
     return <p>해당 데이터가 존재하지 않습니다.</p>
   }
 
-  const selectedQuestion = data[category as keyof DataType].find((q) => q.id === String(questionId))
-  const answersNum = data[category as keyof DataType].length
+  const selectedQuestion = data[category as keyof DataType]?.find((q) => q.id === Number(questionId))
+  const answersNum = data[category as keyof DataType]?.length
 
   if (!selectedQuestion) {
     return <p>해당 질문이 존재하지 않습니다.</p>
   }
   return (
     <section css={{ width: "100%" }}>
+      <audio ref={warningRef} src={warningSound}></audio>
       <div css={{ display: "flex", flexDirection: "column" }}>
         <div css={questionArea}>
-          <div css={timeBar(stop, width)}> </div>
+          <div css={timeBar(width)}> </div>
           <h1 css={{ fontSize: "24px" }}>Question {selectedQuestion.id}</h1>
           <h1 css={{ padding: "40px 20px 20px", fontSize: "18px" }}>{selectedQuestion.question}</h1>
-          <Questions selectedQuestion={selectedQuestion} setStop={setStop} stop={stop} />
+          <Questions selectedQuestion={selectedQuestion} setStop={setStop} stop={stop} warningRef={warningRef} />
           <p>
             정답: {numOfCorrect} / 총 문항: {answersNum}
           </p>
@@ -93,17 +99,15 @@ const questionArea = css`
   }
 `
 
-const timeBar = (stop: boolean | null, width: number) => css`
+const timeBar = (width: number) => css`
   position: relative;
   background: #d6d6d6;
   width: 100%;
   height: 7px;
   border-radius: 50px;
   margin-bottom: 30px;
-  ${stop
-    ? `
   ::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -111,27 +115,5 @@ const timeBar = (stop: boolean | null, width: number) => css`
     height: 100%;
     background-color: #ff735e;
     border-radius: 3px;
-  }
-  `
-    : `
-  ::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 100%;
-    background-color: #ff735e;
-    border-radius: 3px;
-    animation: growBar 60s linear forwards;
-  }
-  `}
-  @keyframes growBar {
-    from {
-      width: 0%;
-    }
-    to {
-      width: 100%;
-    }
   }
 `

@@ -1,16 +1,18 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { css } from "@emotion/react"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { QuestionData } from "@/types/quizType"
 import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
+import bingoSound from "@/assets/bingoSound.mp3"
 
 interface QuestionsProps {
   selectedQuestion: QuestionData
   setStop: (stop: boolean) => void
   stop: boolean
+  warningRef: React.RefObject<HTMLAudioElement>
 }
 
-const Questions = ({ selectedQuestion, setStop, stop }: QuestionsProps) => {
+const Questions = ({ selectedQuestion, setStop, stop, warningRef }: QuestionsProps) => {
   const [checkedIndex, setCheckedIndex] = useState<number | null>(null)
   const [checkedOption, setCheckedOption] = useState<string | null>(null)
   const [correctIndex, setCorrectIndex] = useState<number | null>(null)
@@ -19,6 +21,7 @@ const Questions = ({ selectedQuestion, setStop, stop }: QuestionsProps) => {
   const { category } = useParams()
   const location = useLocation()
   const navigate = useNavigate()
+  const bingoRef = useRef<HTMLAudioElement>(null)
 
   const questionId = new URLSearchParams(location.search).get("questionId") || 1
 
@@ -44,10 +47,16 @@ const Questions = ({ selectedQuestion, setStop, stop }: QuestionsProps) => {
       setCorrect(true)
       setStop(true)
       incrementCorrect()
+      if (bingoRef.current) {
+        bingoRef.current.play()
+      }
     } else {
       setCorrect(false)
       setStop(true)
       setCorrectIndex(selectedQuestion.options.findIndex((o) => o === selectedQuestion.answer))
+      if (warningRef.current) {
+        warningRef.current.play()
+      }
     }
   }
 
@@ -58,7 +67,7 @@ const Questions = ({ selectedQuestion, setStop, stop }: QuestionsProps) => {
 
   const handleNext = () => {
     const nextId = Number(questionId) + 1
-    if (nextId === 31) {
+    if (nextId === 11) {
       navigate("/clearQuiz")
     } else {
       navigate(`/${category}?questionId=${nextId}`)
@@ -67,6 +76,7 @@ const Questions = ({ selectedQuestion, setStop, stop }: QuestionsProps) => {
 
   return (
     <>
+      <audio ref={bingoRef} src={bingoSound}></audio>
       <ul>
         {selectedQuestion.options.map((option, index) => (
           <li key={index}>
@@ -108,7 +118,7 @@ const itemWrapper = (
   border-radius: 50px;
   height: 3rem;
   width: 100%;
-  padding-left: 2rem;
+  padding: 0 2rem;
   margin: 1.5rem 0;
   font-size: 1rem;
   transition: all 0.2s ease-in-out;
