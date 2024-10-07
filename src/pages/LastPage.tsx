@@ -9,8 +9,8 @@ const LastPage = () => {
     <div css={lastPage}>
       <h1>고생하셨습니다!!</h1>
       <p>👏👏👏👏👏</p>
-      {numOfCorrect === 30 ? <p>💯💯💯</p> : null}
-      <p>정답: {numOfCorrect} / 총 문항: 30</p>
+      {numOfCorrect === 10 ? <p>💯💯💯</p> : null}
+      <p>정답: {numOfCorrect} / 총 문항: 10</p>
 
       <Link to={"/"} css={linkBtn}>
         홈으로
