@@ -51,16 +51,14 @@ const Button = ({ menu, number }: ButtonProps) => {
 
   return (
     <>
-      <button css={btn(bgColor, image, number)} onClick={handleCategoryClick}></button>
-      {/* <div css={num}>{number}</div> */}
+      <button css={btn(bgColor, image)} onClick={handleCategoryClick}></button>
     </>
   )
 }
 
 export default Button
 
-const btn = (bgColor: string, image: string, number: string) => css`
-  /* position: relative; */
+const btn = (bgColor: string, image: string) => css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,31 +101,5 @@ const btn = (bgColor: string, image: string, number: string) => css`
   `
     background-size:105px 90px;
     padding:22px 8px 10px;
-  `} /* ::after {
-    content: "${number}";
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: #fff;
-    font-size: 1.2em;
-    padding: 2px;
-    box-sizing: border-box;
-    position: absolute;
-    top: 10px;
-    left: -2px;
-    transform: translate(-50%, -50%);
-    font-weight: 700;
-    transition: all 0.2s ease-in-out;
-  } */
+  `}
 `
-// const num = css`
-//   position: absolute;
-//   top: 0;
-//   left: -30px;
-//   width: 30px;
-//   height: 30px;
-//   box-sizing: border-box;
-//   margin-bottom: 0.7rem;
-//   border-radius: 50%;
-//   background-color: #fff;
-// `
