@@ -52,7 +52,6 @@ const Button = ({ menu, number }: ButtonProps) => {
   return (
     <>
       <button css={btn(bgColor, image, number)} onClick={handleCategoryClick}></button>
-      {/* <div css={num}>{number}</div> */}
     </>
   )
 }
@@ -60,7 +59,6 @@ const Button = ({ menu, number }: ButtonProps) => {
 export default Button
 
 const btn = (bgColor: string, image: string, number: string) => css`
-  /* position: relative; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,14 +73,39 @@ const btn = (bgColor: string, image: string, number: string) => css`
   border-radius: 50%;
   font-size: 1em;
   font-weight: 700;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  transform-style: preserve-3d;
+  position: relative;
+  color: #fff;
+  backface-visibility: hidden;
+  ::after {
+    content: "${number}";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #${bgColor};
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    transform: rotateY(-180deg);
+    backface-visibility: hidden;
+    z-index: 1;
+    font-size: 2em;
+    font-weight: bold;
+  }
   :hover {
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
+    transform: rotateY(180deg);
   }
   ${bgColor === "fff" &&
   `
     background-size:105px 100px;
     padding:10px;
+    color:#000
   `}
   ${bgColor === "000" &&
   `
@@ -103,31 +126,5 @@ const btn = (bgColor: string, image: string, number: string) => css`
   `
     background-size:105px 90px;
     padding:22px 8px 10px;
-  `} /* ::after {
-    content: "${number}";
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: #fff;
-    font-size: 1.2em;
-    padding: 2px;
-    box-sizing: border-box;
-    position: absolute;
-    top: 10px;
-    left: -2px;
-    transform: translate(-50%, -50%);
-    font-weight: 700;
-    transition: all 0.2s ease-in-out;
-  } */
+  `}
 `
-// const num = css`
-//   position: absolute;
-//   top: 0;
-//   left: -30px;
-//   width: 30px;
-//   height: 30px;
-//   box-sizing: border-box;
-//   margin-bottom: 0.7rem;
-//   border-radius: 50%;
-//   background-color: #fff;
-// `
