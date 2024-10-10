@@ -51,14 +51,14 @@ const Button = ({ menu, number }: ButtonProps) => {
 
   return (
     <>
-      <button css={btn(bgColor, image)} onClick={handleCategoryClick}></button>
+      <button css={btn(bgColor, image, number)} onClick={handleCategoryClick}></button>
     </>
   )
 }
 
 export default Button
 
-const btn = (bgColor: string, image: string) => css`
+const btn = (bgColor: string, image: string, number: string) => css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,14 +73,39 @@ const btn = (bgColor: string, image: string) => css`
   border-radius: 50%;
   font-size: 1em;
   font-weight: 700;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  transform-style: preserve-3d;
+  position: relative;
+  color: #fff;
+  backface-visibility: hidden;
+  ::after {
+    content: "${number}";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #${bgColor};
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    transform: rotateY(-180deg);
+    backface-visibility: hidden;
+    z-index: 1;
+    font-size: 2em;
+    font-weight: bold;
+  }
   :hover {
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
+    transform: rotateY(180deg);
   }
   ${bgColor === "fff" &&
   `
     background-size:105px 100px;
     padding:10px;
+    color:#000
   `}
   ${bgColor === "000" &&
   `
