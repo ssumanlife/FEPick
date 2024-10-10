@@ -74,38 +74,26 @@ const btn = (bgColor: string, image: string, number: string) => css`
   font-size: 1em;
   font-weight: 700;
   transition: all 0.3s ease-in-out;
-  transform-style: preserve-3d;
   position: relative;
   color: #fff;
-  backface-visibility: hidden;
+
   ::after {
     content: "${number}";
     position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    background-color: #${bgColor};
+    bottom: 0;
+    right: -10px;
     border-radius: 50%;
     transition: all 0.3s ease-in-out;
-    transform: rotateY(-180deg);
-    backface-visibility: hidden;
-    z-index: 1;
-    font-size: 2em;
-    font-weight: bold;
+    z-index: -1;
+    font-size: 1.5rem;
   }
   :hover {
-    /* transform: scale(1.1); */
-    transform: rotateY(180deg);
+    transform: translate(-10px, 0);
   }
   ${bgColor === "fff" &&
   `
     background-size:105px 100px;
     padding:10px;
-    color:#000
   `}
   ${bgColor === "000" &&
   `
