@@ -7,7 +7,7 @@ const Modal = () => {
     <div css={modalArea} onClick={closeModal}>
       <div css={modalWrapper}>
         <p>
-          <span css={{ color: "#00601e", fontWeight: "700" }}>DevQuiz</span>에 오신 것을 환영합니다.
+          <span css={{ color: "#00601e", fontWeight: "700" }}>Frontend's Pick</span>에 오신 것을 환영합니다.
         </p>
         <p>
           각 카드는 <span css={{ color: "#00601e", fontWeight: "700" }}>10문항</span>으로 이루어져있습니다.
@@ -19,7 +19,9 @@ const Modal = () => {
           30초가 지날 시 자동으로 <span css={{ color: "#d01010", fontWeight: "700" }}>오답처리</span> 됩니다.
         </p>
         <p>프론트엔드 기초 문제로 이루어져있으니,</p>
-        <p>문제를 푸시면서 유익한 시간 되시길 바랍니다.</p>
+        <p>
+          <span css={{ color: "#00601e", fontWeight: "700" }}>FEP</span>에서 유익한 시간 되시길 바랍니다.
+        </p>
         <p>감사합니다. 😎</p>
       </div>
     </div>
