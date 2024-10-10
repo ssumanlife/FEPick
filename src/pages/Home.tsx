@@ -21,7 +21,7 @@ const Home = () => {
     resetCorrect()
     const timer = setTimeout(() => {
       setColorChange(true)
-    }, 2400)
+    }, 1800)
     return () => clearTimeout(timer)
   }, [])
 
@@ -78,30 +78,45 @@ const pickIcon = css`
   position: absolute;
   top: 40px;
   left: -30px;
-  animation: pick 3s linear 1;
+  animation: pick 2s linear 1;
   @keyframes pick {
     0% {
       top: 40px;
       left: -10px;
       transform: rotate(0);
     }
-    20% {
-      top: 10px;
-      left: 70px;
+    10% {
+      top: 20px;
+      left: 50px;
       transform: rotate(0);
     }
-    30% {
-      top: 0px;
+    20% {
+      top: 12px;
       left: 100px;
       transform: rotate(0);
     }
-    45% {
-      top: 80px;
-      left: 210px;
+    30% {
+      top: 25px;
+      left: 150px;
+      transform: rotate(0);
+    }
+    40% {
+      top: 55px;
+      left: 200px;
+      transform: rotate(0);
+    }
+    50% {
+      top: 65px;
+      left: 240px;
+      transform: rotate(0);
+    }
+    60% {
+      top: 45px;
+      left: 280px;
       transform: rotate(0);
     }
     65% {
-      top: 32px;
+      top: 40px;
       left: 310px;
       transform: rotate(0);
     }
