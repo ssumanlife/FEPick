@@ -1,4 +1,4 @@
-import { Dot, MousePointerClick, ShieldQuestion } from "lucide-react"
+import { BadgeHelp, Dot, MousePointerClick, ShieldQuestion } from "lucide-react"
 import { css } from "@emotion/react"
 import { useEffect, useState } from "react"
 import useModalStore from "@/stores/useModalStore"
@@ -28,12 +28,10 @@ const Header = () => {
           <div css={pickIcon}>
             <MousePointerClick size={"32px"} />
           </div>
-          <h1 onClick={() => navigate("/")}>
-            F <Dot size={20} /> E <Dot size={20} /> P
-          </h1>
+          <h1 onClick={() => navigate("/")}>{/* F <Dot size={20} /> E <Dot size={20} /> P */}F E P i c k</h1>
         </div>
         <div css={iconWrapper} onClick={openModal}>
-          <ShieldQuestion size={"32px"} />
+          <BadgeHelp size={"40px"} />
         </div>
       </div>
       {modal ? <Modal /> : null}
@@ -121,7 +119,7 @@ const pickIcon = css`
 `
 const iconWrapper = css`
   position: absolute;
-  top: 1.8rem;
+  top: 1.7rem;
   right: 1.8rem;
   width: 50px;
   height: 50px;

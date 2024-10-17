@@ -84,8 +84,8 @@ const Quiz = () => {
       <div css={{ display: "flex", flexDirection: "column" }}>
         <div css={questionArea}>
           <div css={timeBar(width)}> </div>
-          <h1 css={{ fontSize: "24px" }}>Question {selectedQuestion.id}</h1>
-          <h1 css={{ padding: "40px 20px 20px", fontSize: "18px" }}>{selectedQuestion.question}</h1>
+          <h1 css={{ fontSize: "16px" }}>Question {selectedQuestion.id}</h1>
+          <h1 css={{ padding: "30px 20px 20px", fontSize: "18px", lineHeight: "1.5" }}>{selectedQuestion.question}</h1>
           <Questions
             options={selectedQuestion.options}
             answer={selectedQuestion.answer}

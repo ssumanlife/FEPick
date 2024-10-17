@@ -1,10 +1,12 @@
 import { css } from "@emotion/react"
 import { data } from "@/data/mockData"
-import { Link, Outlet, useLocation, useParams } from "react-router-dom"
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom"
+import Button from "@/components/Button"
 
 const QuizMenu = () => {
   const { menu } = useParams()
   const location = useLocation()
+  const navigate = useNavigate()
 
   const menuData = data[menu as keyof typeof data]
   if (!menuData) {
@@ -13,13 +15,15 @@ const QuizMenu = () => {
   const isQuizRoute = location.pathname.startsWith(`/${menu}/`)
 
   return (
-    <div>
-      {/* <p css={{ marginLeft: "2rem" }}>{menu?.toUpperCase()}</p> */}
+    <div css={quizMenuWrapper}>
       {!isQuizRoute &&
         menuData.map((menuItem) => (
-          <div key={menuItem.title} css={menuItemBtn}>
-            <Link to={`/${menu}/${encodeURIComponent(menuItem.title)}?questionId=1`}>{menuItem.title}</Link>
-          </div>
+          <Button
+            key={menuItem.title}
+            onClick={() => navigate(`/${menu}/${encodeURIComponent(menuItem.title)}?questionId=1`)}
+          >
+            {menuItem.title}
+          </Button>
         ))}
       <Outlet />
     </div>
@@ -28,25 +32,10 @@ const QuizMenu = () => {
 
 export default QuizMenu
 
-const menuItemBtn = css`
+const quizMenuWrapper = css`
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2em 0;
-  a {
-    display: flex;
-    align-items: center;
-    width: 80%;
-    height: 3rem;
-    padding: 0 2rem;
-    box-sizing: border-box;
-    border: 1px solid #666;
-    border-radius: 50px;
-    text-decoration: none;
-    color: #fff;
-    transition: transform 0.3s ease-in-out;
-    :hover {
-      transform: scale(1.05);
-    }
-  }
 `
