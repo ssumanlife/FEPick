@@ -1,24 +1,24 @@
 import { useState, useEffect, useRef } from "react"
 import { css } from "@emotion/react"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
-import { QuestionData } from "@/types/quizType"
 import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
 import bingoSound from "@/assets/bingoSound.mp3"
 
 interface QuestionsProps {
-  selectedQuestion: QuestionData
+  options: string[]
+  answer: string
   setStop: (stop: boolean) => void
   stop: boolean
   warningRef: React.RefObject<HTMLAudioElement>
 }
 
-const Questions = ({ selectedQuestion, setStop, stop, warningRef }: QuestionsProps) => {
+const Questions = ({ options = [], answer, setStop, stop, warningRef }: QuestionsProps) => {
   const [checkedIndex, setCheckedIndex] = useState<number | null>(null)
   const [checkedOption, setCheckedOption] = useState<string | null>(null)
   const [correctIndex, setCorrectIndex] = useState<number | null>(null)
   const [correct, setCorrect] = useState<boolean | null>(null)
   const incrementCorrect = useNumOfCorrectStore((state) => state.incrementCorrect)
-  const { category } = useParams()
+  const { menu, title } = useParams()
   const location = useLocation()
   const navigate = useNavigate()
   const bingoRef = useRef<HTMLAudioElement>(null)
@@ -30,9 +30,9 @@ const Questions = ({ selectedQuestion, setStop, stop, warningRef }: QuestionsPro
     setCheckedOption(null)
     setCorrect(null)
     setCorrectIndex(null)
-  }, [questionId, category])
+  }, [menu, title, questionId])
 
-  if (!category) {
+  if (!menu || !title) {
     return <p>해당 데이터가 존재하지 않습니다.</p>
   }
 
@@ -43,7 +43,7 @@ const Questions = ({ selectedQuestion, setStop, stop, warningRef }: QuestionsPro
 
   const handleSubmit = () => {
     if (!checkedOption) return
-    if (checkedOption === selectedQuestion.answer) {
+    if (checkedOption === answer) {
       setCorrect(true)
       setStop(true)
       incrementCorrect()
@@ -53,7 +53,7 @@ const Questions = ({ selectedQuestion, setStop, stop, warningRef }: QuestionsPro
     } else {
       setCorrect(false)
       setStop(true)
-      setCorrectIndex(selectedQuestion.options.findIndex((o) => o === selectedQuestion.answer))
+      setCorrectIndex(options.findIndex((o) => o === answer))
       if (warningRef.current) {
         warningRef.current.play()
       }
@@ -62,7 +62,7 @@ const Questions = ({ selectedQuestion, setStop, stop, warningRef }: QuestionsPro
 
   if (stop && correct === null) {
     setCorrect(false)
-    setCorrectIndex(selectedQuestion.options.findIndex((o) => o === selectedQuestion.answer))
+    setCorrectIndex(options.findIndex((o) => o === answer))
   }
 
   const handleNext = () => {
@@ -70,7 +70,7 @@ const Questions = ({ selectedQuestion, setStop, stop, warningRef }: QuestionsPro
     if (nextId === 11) {
       navigate("/clearQuiz")
     } else {
-      navigate(`/${category}?questionId=${nextId}`)
+      navigate(`/${menu}/${encodeURIComponent(title)}?questionId=${nextId}`)
     }
   }
 
@@ -78,7 +78,7 @@ const Questions = ({ selectedQuestion, setStop, stop, warningRef }: QuestionsPro
     <>
       <audio ref={bingoRef} src={bingoSound}></audio>
       <ul>
-        {selectedQuestion.options.map((option, index) => (
+        {options.map((option, index) => (
           <li key={index}>
             <button
               css={itemWrapper(checkedIndex, index, correct, correctIndex)}

@@ -45,14 +45,14 @@ const modalWrapper = css`
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #30b85b;
+  background: #30b85bf7;
   border-radius: 10px;
-  width: 400px;
-  height: 280px;
+  width: 370px;
+  height: 315px;
   font-size: 1.1rem;
   box-sizing: border-box;
-  padding: 1rem;
+  padding: 0 1.5rem;
   & p {
-    margin: 1rem;
+    margin: 1.5rem 0;
   }
 `

@@ -9,39 +9,38 @@ import typescript from "@/assets/typescript.png"
 
 interface ButtonProps {
   menu: string
-  number: string
 }
-const Button = ({ menu, number }: ButtonProps) => {
+const Button = ({ menu }: ButtonProps) => {
   const navigate = useNavigate()
 
   const handleCategoryClick = () => {
-    navigate(`/${menu}-${number}?questionId=1`)
+    navigate(`/${menu}`)
   }
 
   let bgColor = ""
   let image = ""
   switch (menu) {
-    case "Javascript":
+    case "javascript":
       bgColor = "fbe74f"
       image = javascriptImage
       break
-    case "HTML5":
+    case "html":
       bgColor = "f96238"
       image = htmlImage
       break
-    case "CSS3":
+    case "css":
       bgColor = "36a9fb"
       image = cssImage
       break
-    case "React":
+    case "react":
       bgColor = "000"
       image = reactImage
       break
-    case "Typescript":
+    case "typescript":
       bgColor = "3178C6"
       image = typescript
       break
-    case "NextJS":
+    case "nextJS":
       bgColor = "fff"
       image = nextjsImage
       break
@@ -51,44 +50,35 @@ const Button = ({ menu, number }: ButtonProps) => {
 
   return (
     <>
-      <button css={btn(bgColor, image, number)} onClick={handleCategoryClick}></button>
+      <button css={btn(bgColor, image)} onClick={handleCategoryClick}></button>
     </>
   )
 }
 
 export default Button
 
-const btn = (bgColor: string, image: string, number: string) => css`
+const btn = (bgColor: string, image: string) => css`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   background-color: #${bgColor};
   background-image: url(${image});
   background-size: contain;
   background-repeat: no-repeat;
   background-origin: content-box;
-  border-radius: 50%;
+  background-position: center;
+  border-radius: 10px;
   font-size: 1em;
   font-weight: 700;
   transition: all 0.3s ease-in-out;
   position: relative;
   color: #fff;
 
-  ::after {
-    content: "${number}";
-    position: absolute;
-    bottom: 0;
-    right: -10px;
-    border-radius: 50%;
-    transition: all 0.3s ease-in-out;
-    z-index: -1;
-    font-size: 1.5rem;
-  }
   :hover {
-    transform: translate(-10px, 0);
+    transform: scale(1.1);
   }
   ${bgColor === "fff" &&
   `

@@ -3,7 +3,6 @@ import { css } from "@emotion/react"
 import { useLocation, useParams } from "react-router-dom"
 import Questions from "@/components/Questions"
 import { data } from "@/data/mockData"
-import { DataType } from "@/types/quizType"
 import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
 import TimeOver from "@/components/TimeOver"
 import warningSound from "@/assets/warningSound.mp3"
@@ -13,19 +12,34 @@ const Quiz = () => {
   const [startTime, setStartTime] = useState<number | null>(null)
   const [elapsedTime, setElapsedTime] = useState(0)
   const [timeover, setTimeOver] = useState(false)
+  const [selectedQuestion, setSelectedQuestion] = useState<any>([])
   const numOfCorrect = useNumOfCorrectStore((state) => state.numOfCorrect)
-  const { category } = useParams()
+  const { menu, title } = useParams()
   const location = useLocation()
   const warningRef = useRef<HTMLAudioElement>(null)
-
   const questionId = new URLSearchParams(location.search).get("questionId") || 1
+  const decodedCategory = decodeURIComponent(title || "")
 
   useEffect(() => {
     setStartTime(performance.now())
     setStop(false)
     setElapsedTime(0)
     setTimeOver(false)
-  }, [questionId])
+    if (!menu || !decodedCategory) return
+
+    const menuData = data[menu as keyof typeof data]
+    if (!menuData) {
+      console.log("데이터를 찾을 수 없습니다.")
+      return
+    }
+
+    const matchingQuiz = menuData.find((item) => item.title === decodedCategory)
+
+    if (matchingQuiz) {
+      const question = matchingQuiz.quiz.find((q) => q.id === Number(questionId))
+      setSelectedQuestion(question)
+    }
+  }, [menu, title, questionId])
 
   useEffect(() => {
     if (!stop) {
@@ -56,16 +70,14 @@ const Quiz = () => {
     }
   }, [width, stop])
 
-  if (!category) {
+  if (!title) {
     return <p>해당 데이터가 존재하지 않습니다.</p>
   }
-
-  const selectedQuestion = data[category as keyof DataType]?.find((q) => q.id === Number(questionId))
-  const answersNum = data[category as keyof DataType]?.length
 
   if (!selectedQuestion) {
     return <p>해당 질문이 존재하지 않습니다.</p>
   }
+
   return (
     <section css={{ width: "100%" }}>
       <audio ref={warningRef} src={warningSound}></audio>
@@ -74,10 +86,14 @@ const Quiz = () => {
           <div css={timeBar(width)}> </div>
           <h1 css={{ fontSize: "24px" }}>Question {selectedQuestion.id}</h1>
           <h1 css={{ padding: "40px 20px 20px", fontSize: "18px" }}>{selectedQuestion.question}</h1>
-          <Questions selectedQuestion={selectedQuestion} setStop={setStop} stop={stop} warningRef={warningRef} />
-          <p>
-            정답: {numOfCorrect} / 총 문항: {answersNum}
-          </p>
+          <Questions
+            options={selectedQuestion.options}
+            answer={selectedQuestion.answer}
+            setStop={setStop}
+            stop={stop}
+            warningRef={warningRef}
+          />
+          <p>정답: {numOfCorrect} / 총 문항: 10</p>
           {timeover ? <TimeOver /> : null}
         </div>
       </div>
@@ -90,7 +106,7 @@ export default Quiz
 const questionArea = css`
   width: 100%;
   box-sizing: border-box;
-  padding: 40px 20px;
+  padding: 20px;
   & p {
     display: flex;
     justify-content: center;
