@@ -9,8 +9,8 @@ app.use(cors())
 app.use(express.json())
 dotenv.config()
 
-const PORT = process.env.PORT || 3000
-const MONGOURL = process.env.MONGO_URL
+const PORT = import.meta.env.VITE_PORT
+const MONGOURL = import.meta.env.VITE_MONGO_URL
 
 const dbName = "fepick"
 let database
