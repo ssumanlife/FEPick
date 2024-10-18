@@ -152,6 +152,9 @@ textarea {
   border: 0;
   border-radius: 0;
 }
+textarea {
+  resize: none;
+}
 
 body {
   background-color: #fff;

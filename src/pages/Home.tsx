@@ -3,8 +3,10 @@ import SkillButton from "@/components/SkillButton"
 import { Category } from "@/types/quizType"
 import { css } from "@emotion/react"
 import Button from "@/components/Button"
+import { useNavigate } from "react-router-dom"
 
 const Home = () => {
+  const navigate = useNavigate()
   const category: Category[] = Object.keys(data) as Category[]
   return (
     <div css={homeWrapper}>
@@ -22,6 +24,7 @@ const Home = () => {
           justify-content: center;
           color: #42e476;
         `}
+        onClick={() => navigate("/guest-book")}
       >
         방명록
       </Button>

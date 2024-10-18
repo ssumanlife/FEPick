@@ -4,6 +4,7 @@ import Home from "@/pages/Home"
 import { createBrowserRouter } from "react-router-dom"
 import Header from "@/components/Header"
 import QuizMenu from "@/pages/QuizMenu"
+import GuestBook from "@/pages/GuestBook"
 
 const router = createBrowserRouter([
   {
@@ -25,8 +26,12 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/clearQuiz",
+        path: "/clear-quiz",
         element: <LastPage />,
+      },
+      {
+        path: "/guest-book",
+        element: <GuestBook />,
       },
     ],
   },

@@ -25,3 +25,22 @@ const connectToDB = async () => {
   }
 }
 connectToDB()
+
+app.get("/api/guestBook", async (req, res) => {
+  try {
+    const result = await database.collection("guestBook").find({}).toArray()
+
+    return res.send(result)
+  } catch (error) {
+    console.error("데이터 읽기 실패", error)
+  }
+})
+
+app.put("/api/guestBook/update-comment", async (req, res) => {
+  try {
+    const result = await database.collection("guestBook").insertOne(req.body)
+    return res.send(result)
+  } catch (error) {
+    console.error("방명록 업데이트 실패", error)
+  }
+})

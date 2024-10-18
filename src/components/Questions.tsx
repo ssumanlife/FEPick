@@ -68,7 +68,7 @@ const Questions = ({ options = [], answer, setStop, stop, warningRef }: Question
   const handleNext = () => {
     const nextId = Number(questionId) + 1
     if (nextId === 11) {
-      navigate("/clearQuiz")
+      navigate("/clear-quiz")
     } else {
       navigate(`/${menu}/${encodeURIComponent(title)}?questionId=${nextId}`)
     }
