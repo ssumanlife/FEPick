@@ -22,7 +22,7 @@ const GuestBook = () => {
     if (data) {
       setCommentData(data)
     }
-  }, [location])
+  }, [location, data])
 
   const limitData = [...commentData]
     .reverse()

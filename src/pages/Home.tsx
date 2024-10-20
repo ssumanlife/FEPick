@@ -4,9 +4,16 @@ import { Category } from "@/types/quizType"
 import { css } from "@emotion/react"
 import Button from "@/components/Button"
 import { useNavigate } from "react-router-dom"
+import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
+import { useEffect } from "react"
 
 const Home = () => {
   const navigate = useNavigate()
+  const resetCorrect = useNumOfCorrectStore((state) => state.resetCorrect)
+
+  useEffect(() => {
+    resetCorrect()
+  }, [])
   const category: Category[] = Object.keys(data) as Category[]
   return (
     <div css={homeWrapper}>
