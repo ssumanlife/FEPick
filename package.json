@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "server": "node server/index.js",
-    "build": "ANALYZE=true NODE_ENV=production next build",
+    "build": "NODE_ENV=production tsc && vite build",
     "start": "pm2 start server/index.js",
     "lint": "eslint .",
     "preview": "vite preview"
