@@ -10,15 +10,6 @@ export default defineConfig({
       },
     }),
   ],
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://52.14.112.18:3000",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
   resolve: {
     alias: {
       "@": "/src",
