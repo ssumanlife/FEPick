@@ -10,6 +10,7 @@ export default defineConfig({
       },
     }),
   ],
+  base: "/FEPick/",
   resolve: {
     alias: {
       "@": "/src",
