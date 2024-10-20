@@ -9,8 +9,8 @@ app.use(cors())
 app.use(express.json())
 dotenv.config()
 
-const PORT = import.meta.env.VITE_PORT
-const MONGOURL = import.meta.env.VITE_MONGO_URL
+const PORT = process.env.VITE_PORT
+const MONGOURL = process.env.VITE_MONGO_URL
 
 const dbName = "fepick"
 let database
@@ -19,7 +19,7 @@ const connectToDB = async () => {
   try {
     const client = await MongoClient.connect(MONGOURL)
     database = client.db(dbName)
-    app.listen(PORT, () => console.log(`listening on port ${PORT}`))
+    app.listen(PORT, "0.0.0.0", () => console.log(`listening on port ${PORT}`))
   } catch (error) {
     console.error(error)
   }
