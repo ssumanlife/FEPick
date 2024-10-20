@@ -6,7 +6,7 @@ const useGetCommentData = () => {
     queryKey: ["guestBook"],
     queryFn: async (): Promise<GuestBookData[]> => {
       try {
-        const res = await fetch("/api/guestBook")
+        const res = await fetch(`${import.meta.env.API_URL}/api/guestBook`)
         return res.json()
       } catch (error) {
         console.error(error)
