@@ -1,32 +1,33 @@
 import { data } from "@/data/mockData"
-import Button from "@/components/Button"
-import { QuizCategory } from "@/types/quizType"
+import SkillButton from "@/components/SkillButton"
+import { Category } from "@/types/quizType"
 import { css } from "@emotion/react"
-import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
-import { useEffect } from "react"
+import Button from "@/components/Button"
+import { useNavigate } from "react-router-dom"
 
 const Home = () => {
-  const resetCorrect = useNumOfCorrectStore((state) => state.resetCorrect)
-  const category: QuizCategory[] = Object.keys(data) as QuizCategory[]
-
-  useEffect(() => {
-    resetCorrect()
-  }, [])
-
+  const navigate = useNavigate()
+  const category: Category[] = Object.keys(data) as Category[]
   return (
     <div css={homeWrapper}>
-      <h1>DevQuiz</h1>
-      <div css={line}></div>
-      <div css={btnWrapper}>
+      <div css={categoryWrapper}>
         {category.map((item) => {
-          const [menu, number] = item.split("-")
           return (
             <div css={{ position: "relative" }} key={item}>
-              <Button menu={menu} number={number} />
+              <SkillButton menu={item} />
             </div>
           )
         })}
       </div>
+      <Button
+        customStyle={css`
+          justify-content: center;
+          color: #42e476;
+        `}
+        onClick={() => navigate("/guest-book")}
+      >
+        방명록
+      </Button>
     </div>
   )
 }
@@ -36,21 +37,13 @@ export default Home
 const homeWrapper = css`
   width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  & h1 {
-    margin-top: 2rem;
-    font-size: 2rem;
-  }
+  flex-direction: column;
+  margin-bottom: 20px;
 `
-const line = css`
-  width: 100%;
-  height: 0.2rem;
-  margin-top: 20px;
-  background-color: #333;
-`
-const btnWrapper = css`
+
+const categoryWrapper = css`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
