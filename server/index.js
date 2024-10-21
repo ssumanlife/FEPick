@@ -37,14 +37,16 @@ app.get("/api/guestBook", async (req, res) => {
     return res.send(result)
   } catch (error) {
     console.error("데이터 읽기 실패", error)
+    return res.status(500).send("서버 오류")
   }
 })
 
-app.put("/api/guestBook/update-comment", async (req, res) => {
+app.put("/api/guestBook", async (req, res) => {
   try {
     const result = await database.collection("guestBook").insertOne(req.body)
     return res.send(result)
   } catch (error) {
     console.error("방명록 업데이트 실패", error)
+    return res.status(500).send("서버 오류")
   }
 })
