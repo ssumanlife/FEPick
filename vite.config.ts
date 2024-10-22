@@ -10,6 +10,14 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://fepick.me",
+        changeOrigin: true,
+      },
+    },
+  },
   resolve: {
     alias: {
       "@": "/src",

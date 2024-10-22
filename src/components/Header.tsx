@@ -1,8 +1,8 @@
-import { BadgeHelp, MousePointerClick } from "lucide-react"
+import { ArrowBigLeftDash, BadgeHelp, MousePointerClick } from "lucide-react"
 import { css } from "@emotion/react"
 import { useEffect, useState } from "react"
 import useModalStore from "@/stores/useModalStore"
-import { Outlet, useNavigate } from "react-router-dom"
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom"
 import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
 import Modal from "@/components/Modal"
 
@@ -12,6 +12,8 @@ const Header = () => {
   const modal = useModalStore((state) => state.modal)
   const openModal = useModalStore((state) => state.openModal)
   const navigate = useNavigate()
+  const { menu, title } = useParams()
+  const location = useLocation()
 
   useEffect(() => {
     resetCorrect()
@@ -21,6 +23,14 @@ const Header = () => {
     return () => clearTimeout(timer)
   }, [])
 
+  const handleRoute = () => {
+    if (title) {
+      navigate(`/${menu}`)
+    } else {
+      navigate("/")
+    }
+  }
+
   return (
     <>
       <div css={headerWrapper(colorChange)}>
@@ -28,6 +38,11 @@ const Header = () => {
           <div css={pickIcon}>
             <MousePointerClick size={"32px"} />
           </div>
+          {location.pathname !== "/" && (
+            <button css={backIconWrapper} onClick={handleRoute}>
+              <ArrowBigLeftDash size={"30px"} />
+            </button>
+          )}
           <h1 onClick={() => navigate("/")}>F E P i c k</h1>
         </div>
         <div css={iconWrapper} onClick={openModal}>
@@ -127,6 +142,16 @@ const iconWrapper = css`
   color: #42e476;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  :hover {
+    transform: scale(1.2);
+  }
+`
+const backIconWrapper = css`
+  position: absolute;
+  top: 2rem;
+  left: 1.8rem;
+  transition: all 0.2s ease-in-out;
+  color: #fff;
   :hover {
     transform: scale(1.2);
   }

@@ -4,6 +4,7 @@ import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom"
 import Button from "@/components/Button"
 import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
 import { useEffect } from "react"
+import NotFound from "@/pages/NotFound"
 
 const QuizMenu = () => {
   const { menu } = useParams()
@@ -18,7 +19,7 @@ const QuizMenu = () => {
 
   const menuData = data[menu as keyof typeof data]
   if (!menuData) {
-    return <p>데이터가 없습니다.</p>
+    return <NotFound />
   }
 
   return (
