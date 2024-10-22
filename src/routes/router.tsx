@@ -5,11 +5,13 @@ import { createBrowserRouter } from "react-router-dom"
 import Header from "@/components/Header"
 import QuizMenu from "@/pages/QuizMenu"
 import GuestBook from "@/pages/GuestBook"
+import NotFound from "@/pages/NotFound"
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Header />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",

@@ -3,6 +3,7 @@ import { css } from "@emotion/react"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
 import bingoSound from "@/assets/bingoSound.mp3"
+import NotFound from "@/pages/NotFound"
 
 interface QuestionsProps {
   options: string[]
@@ -33,7 +34,7 @@ const Questions = ({ options = [], answer, setStop, stop, warningRef }: Question
   }, [menu, title, questionId])
 
   if (!menu || !title) {
-    return <p>해당 데이터가 존재하지 않습니다.</p>
+    return <NotFound />
   }
 
   const handleCheckboxChange = (index: number, option: string) => {

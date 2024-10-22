@@ -5,18 +5,27 @@ import { css } from "@emotion/react"
 import { Pagination } from "@mui/material"
 import { useEffect, useRef, useState } from "react"
 import { useLocation } from "react-router-dom"
+import { v4 as uuidv4 } from "uuid"
 
 const COUNT_PER_PAGE = 6
 const GuestBook = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [commentData, setCommentData] = useState<GuestBookData[]>([])
+  const [isComposing, setIsComposing] = useState(false)
   const nameRef = useRef<HTMLInputElement>(null)
   const contentRef = useRef<HTMLTextAreaElement>(null)
   const { data } = useGetCommentData()
   const { mutate } = useUpdateCommentData()
   const location = useLocation()
   const today = new Date()
-  const createdAt = today.toLocaleDateString().slice(2, 12)
+  const createdAt = today
+    .toLocaleDateString("ko-KR", {
+      year: "2-digit",
+      month: "2-digit",
+      day: "2-digit",
+    })
+    .replace(/\./g, ".")
+    .replace(/\.$/, "")
 
   useEffect(() => {
     if (data) {
@@ -30,9 +39,9 @@ const GuestBook = () => {
 
   const fetchComment = async () => {
     if (nameRef.current && contentRef.current) {
-      if (nameRef.current.value !== "" && contentRef.current.value !== "") {
+      if (nameRef.current.value.replace(/ /g, "") !== "" && contentRef.current.value.replace(/ /g, "")) {
         const newCommentData = {
-          id: String(commentData.length + 1),
+          id: uuidv4(),
           name: nameRef.current.value,
           content: contentRef.current.value,
           createdAt,
@@ -54,18 +63,46 @@ const GuestBook = () => {
   }
   return (
     <div css={guestBookWrapper}>
-      <div css={formstyle}>
+      <form
+        css={formstyle}
+        onSubmit={(e) => {
+          e.preventDefault()
+          fetchComment()
+        }}
+      >
         <div>
-          <input ref={nameRef} type="text" placeholder="닉네임" maxLength={10} />
-          <button onClick={fetchComment}>등록</button>
+          <input
+            ref={nameRef}
+            type="text"
+            placeholder="닉네임"
+            maxLength={10}
+            onKeyDown={(e) => {
+              if (e.key === "Tab") {
+                e.preventDefault()
+                contentRef.current?.focus()
+              }
+            }}
+          />
+          <button type="submit">등록</button>
         </div>
         <textarea
           ref={contentRef}
           css={{ height: "82px", lineHeight: "20px" }}
-          placeholder="퀴즈 카테고리 추천 혹은 응원의 한마디를 남겨주세요."
+          placeholder="퀴즈 카테고리 추천 혹은 응원의 한마디를 입력하신 후 엔터를 눌러주세요."
           maxLength={90}
+          onCompositionStart={() => setIsComposing(true)}
+          onCompositionEnd={() => setIsComposing(false)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !isComposing) {
+              e.preventDefault()
+              const form = (e.target as HTMLElement).closest("form")
+              if (form) {
+                form.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }))
+              }
+            }
+          }}
         />
-      </div>
+      </form>
       <ul css={comentList}>
         {limitData.map((item) => (
           <li key={item.id}>

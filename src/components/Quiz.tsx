@@ -6,6 +6,7 @@ import { data } from "@/data/mockData"
 import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
 import TimeOver from "@/components/TimeOver"
 import warningSound from "@/assets/warningSound.mp3"
+import NotFound from "@/pages/NotFound"
 
 const Quiz = () => {
   const [stop, setStop] = useState(false)
@@ -28,10 +29,7 @@ const Quiz = () => {
     if (!menu || !decodedCategory) return
 
     const menuData = data[menu as keyof typeof data]
-    if (!menuData) {
-      console.log("데이터를 찾을 수 없습니다.")
-      return
-    }
+    if (!menuData) return
 
     const matchingQuiz = menuData.find((item) => item.title === decodedCategory)
 
@@ -70,12 +68,8 @@ const Quiz = () => {
     }
   }, [width, stop])
 
-  if (!title) {
-    return <p>해당 데이터가 존재하지 않습니다.</p>
-  }
-
-  if (!selectedQuestion) {
-    return <p>해당 질문이 존재하지 않습니다.</p>
+  if (!title || !selectedQuestion) {
+    return <NotFound />
   }
 
   return (
