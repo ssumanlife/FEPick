@@ -77,54 +77,54 @@ const pickIcon = css`
   @keyframes pick {
     0% {
       top: 40px;
-      left: -10px;
+      left: calc(0);
       transform: rotate(0);
     }
     10% {
       top: 20px;
-      left: 60px;
+      left: calc(10%);
       transform: rotate(0);
     }
     20% {
       top: 12px;
-      left: 110px;
+      left: calc(25%);
       transform: rotate(0);
     }
     30% {
       top: 25px;
-      left: 170px;
+      left: calc(40%);
       transform: rotate(0);
     }
     40% {
       top: 55px;
-      left: 230px;
+      left: calc(52%);
       transform: rotate(0);
     }
     50% {
       top: 65px;
-      left: 290px;
+      left: calc(65%);
       transform: rotate(0);
     }
     60% {
-      top: 45px;
-      left: 340px;
+      top: 50px;
+      left: calc(78%);
       transform: rotate(0);
     }
     65% {
       top: 40px;
-      left: 380px;
+      left: calc(90%);
       transform: rotate(0);
     }
     66% {
-      left: 380px;
+      left: calc(90%);
       transform: rotate(0);
     }
     85% {
-      left: 380px;
+      left: calc(90%);
       transform: rotate(-30deg) scale(1.2);
     }
     100% {
-      left: 380px;
+      left: calc(90%);
       transform: rotate(0);
     }
   }
