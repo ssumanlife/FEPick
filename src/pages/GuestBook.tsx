@@ -76,8 +76,10 @@ const GuestBook = () => {
             type="text"
             placeholder="닉네임"
             maxLength={10}
+            onCompositionStart={() => setIsComposing(true)}
+            onCompositionEnd={() => setIsComposing(false)}
             onKeyDown={(e) => {
-              if (e.key === "Tab") {
+              if (e.key === "Tab" && !isComposing) {
                 e.preventDefault()
                 contentRef.current?.focus()
               }
@@ -207,7 +209,8 @@ const comentList = css`
   }
 `
 const paginationWrapper = css`
-  width: 430px;
+  width: 100%;
+  max-width: 430px;
   display: flex;
   justify-content: center;
   align-items: center;

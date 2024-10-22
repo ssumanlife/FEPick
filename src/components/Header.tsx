@@ -33,7 +33,7 @@ const Header = () => {
 
   return (
     <>
-      <div css={headerWrapper(colorChange)}>
+      <div css={headerWrapper}>
         <div>
           <div css={pickIcon}>
             <MousePointerClick size={"32px"} />
@@ -45,18 +45,18 @@ const Header = () => {
           )}
           <h1 onClick={() => navigate("/")}>F E P i c k</h1>
         </div>
-        <div css={iconWrapper} onClick={openModal}>
+        <div css={iconWrapper(colorChange)} onClick={openModal}>
           <BadgeHelp size={"38px"} />
         </div>
+        {modal ? <Modal /> : null}
+        <Outlet />
       </div>
-      {modal ? <Modal /> : null}
-      <Outlet />
     </>
   )
 }
 
 export default Header
-const headerWrapper = (colorChange: boolean) => css`
+const headerWrapper = css`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -67,9 +67,6 @@ const headerWrapper = (colorChange: boolean) => css`
     margin: 2rem 0 1rem;
     font-size: 2rem;
     cursor: pointer;
-  }
-  & div:last-child {
-    color: ${colorChange ? "#42e476" : "#fff"};
   }
 `
 const pickIcon = css`
@@ -132,14 +129,14 @@ const pickIcon = css`
     }
   }
 `
-const iconWrapper = css`
+const iconWrapper = (colorChange: boolean) => css`
   position: absolute;
   top: 1.8rem;
   right: 1.8rem;
   width: 50px;
   height: 50px;
   font-weight: 700;
-  color: #42e476;
+  color: ${colorChange ? "#42e476" : "#fff"};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   :hover {
