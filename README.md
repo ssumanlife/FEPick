@@ -1,50 +1,26 @@
-# React + TypeScript + Vite
+# 📍 FE Pick 펩픽 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> 프론트엔드 스택의 기초 개념 퀴즈 플랫폼
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 💡 Description
 
-## Expanding the ESLint configuration
+프론트엔드 스택에 대해 공부하고 있는 주니어 개발자분들이 기초 개념에 대해 퀴즈를 풀 수 있습니다. 각 퀴즈는 HTML, CSS, JavaScript, TypeScript, Next.js, React의 핵심 개념을 기반으로 구성되어 있으며, 실전 감각을 키우고 학습한 내용을 복습하는 데 도움이 됩니다.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+펩픽은 사용자 친화적인 인터페이스와 카테고리별 퀴즈로 구성되어 있으며, 초보 개발자들이 재미있고 효율적으로 공부할 수 있도록 설계되었습니다. 스스로의 학습 진도를 체크하면서 실력을 쌓아갈 수 있는 유익한 시간을 제공하며, 다양한 난이도의 문제를 통해 기초부터 심화까지 체계적으로 학습할 수 있습니다.
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🧑‍💻 Tech Stack
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react"
+##### FE
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/-Tanstack%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white" /> <img src="https://img.shields.io/badge/Zustand-%23764ABC.svg?&style=for-the-badge&logo=zustand&logoColor=white" /> <img alt="Python" src ="https://img.shields.io/badge/Emotion-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-})
-```
+##### BE
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"> <img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white">
+
+##### Database
+<img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white">
+
+##### Deploy
+<img src="https://img.shields.io/badge/aws_EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white"> <img src="https://img.shields.io/badge/aws_route53-8C4FFF?style=for-the-badge&logo=amazonroute53&logoColor=white"> 
