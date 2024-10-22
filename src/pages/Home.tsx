@@ -20,7 +20,7 @@ const Home = () => {
       <div css={categoryWrapper}>
         {category.map((item) => {
           return (
-            <div css={{ position: "relative" }} key={item}>
+            <div key={item}>
               <SkillButton menu={item} />
             </div>
           )

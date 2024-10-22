@@ -74,7 +74,6 @@ const btn = (bgColor: string, image: string) => css`
   font-size: 1em;
   font-weight: 700;
   transition: all 0.3s ease-in-out;
-  position: relative;
   color: #fff;
 
   :hover {

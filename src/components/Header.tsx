@@ -33,7 +33,7 @@ const Header = () => {
 
   return (
     <>
-      <div css={headerWrapper(colorChange)}>
+      <div css={headerWrapper}>
         <div>
           <div css={pickIcon}>
             <MousePointerClick size={"32px"} />
@@ -45,18 +45,18 @@ const Header = () => {
           )}
           <h1 onClick={() => navigate("/")}>F E P i c k</h1>
         </div>
-        <div css={iconWrapper} onClick={openModal}>
+        <div css={iconWrapper(colorChange)} onClick={openModal}>
           <BadgeHelp size={"38px"} />
         </div>
+        {modal ? <Modal /> : null}
+        <Outlet />
       </div>
-      {modal ? <Modal /> : null}
-      <Outlet />
     </>
   )
 }
 
 export default Header
-const headerWrapper = (colorChange: boolean) => css`
+const headerWrapper = css`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -68,9 +68,6 @@ const headerWrapper = (colorChange: boolean) => css`
     font-size: 2rem;
     cursor: pointer;
   }
-  & div:last-child {
-    color: ${colorChange ? "#42e476" : "#fff"};
-  }
 `
 const pickIcon = css`
   position: absolute;
@@ -80,66 +77,66 @@ const pickIcon = css`
   @keyframes pick {
     0% {
       top: 40px;
-      left: -10px;
+      left: calc(0);
       transform: rotate(0);
     }
     10% {
       top: 20px;
-      left: 60px;
+      left: calc(10%);
       transform: rotate(0);
     }
     20% {
       top: 12px;
-      left: 110px;
+      left: calc(25%);
       transform: rotate(0);
     }
     30% {
       top: 25px;
-      left: 170px;
+      left: calc(40%);
       transform: rotate(0);
     }
     40% {
       top: 55px;
-      left: 230px;
+      left: calc(52%);
       transform: rotate(0);
     }
     50% {
       top: 65px;
-      left: 290px;
+      left: calc(65%);
       transform: rotate(0);
     }
     60% {
-      top: 45px;
-      left: 340px;
+      top: 50px;
+      left: calc(78%);
       transform: rotate(0);
     }
     65% {
       top: 40px;
-      left: 380px;
+      left: calc(90%);
       transform: rotate(0);
     }
     66% {
-      left: 380px;
+      left: calc(90%);
       transform: rotate(0);
     }
     85% {
-      left: 380px;
+      left: calc(90%);
       transform: rotate(-30deg) scale(1.2);
     }
     100% {
-      left: 380px;
+      left: calc(90%);
       transform: rotate(0);
     }
   }
 `
-const iconWrapper = css`
+const iconWrapper = (colorChange: boolean) => css`
   position: absolute;
   top: 1.8rem;
   right: 1.8rem;
   width: 50px;
   height: 50px;
   font-weight: 700;
-  color: #42e476;
+  color: ${colorChange ? "#42e476" : "#fff"};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   :hover {

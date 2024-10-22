@@ -35,7 +35,7 @@ export const data = {
         },
         {
           id: 6,
-          question: "HTML에서 빈 공간을 추가하는 태그는 무엇입니까?",
+          question: "HTML에서 줄바꿈을 하기위해 추가하는 태그는 무엇입니까?",
           options: ["<br>", "<space>", "<hr>", "<p>"],
           answer: "<br>",
         },

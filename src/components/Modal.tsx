@@ -1,11 +1,15 @@
 import useModalStore from "@/stores/useModalStore"
 import { css } from "@emotion/react"
+import { X } from "lucide-react"
 
 const Modal = () => {
   const closeModal = useModalStore((state) => state.closeModal)
   return (
-    <div css={modalArea} onClick={closeModal}>
+    <div css={modalArea}>
       <div css={modalWrapper}>
+        <button css={closeBtn} onClick={closeModal}>
+          <X />
+        </button>
         <p>
           <span css={{ color: "#00601e", fontWeight: "700" }}>펩픽</span>에 오신 것을 환영합니다.
         </p>
@@ -36,7 +40,7 @@ const modalArea = css`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100dvh;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
 `
 const modalWrapper = css`
@@ -48,11 +52,21 @@ const modalWrapper = css`
   background: #30b85bf7;
   border-radius: 10px;
   width: 370px;
-  height: 270px;
+  height: 276px;
   font-size: 1.1rem;
   box-sizing: border-box;
   padding: 0 1.2rem;
   & p {
     margin: 1.2rem 0;
+  }
+`
+const closeBtn = css`
+  position: absolute;
+  color: #fff;
+  top: 10px;
+  right: 10px;
+  transition: transform 0.2s ease-in-out;
+  :hover {
+    transform: scale(1.15);
   }
 `
