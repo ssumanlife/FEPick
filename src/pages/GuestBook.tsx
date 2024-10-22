@@ -96,6 +96,9 @@ const GuestBook = () => {
           onCompositionEnd={() => setIsComposing(false)}
           onKeyDown={(e) => {
             if (e.key === "Enter" && !isComposing) {
+              if (e.shiftKey) {
+                return
+              }
               e.preventDefault()
               const form = (e.target as HTMLElement).closest("form")
               if (form) {
