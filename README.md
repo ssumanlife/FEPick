@@ -1,6 +1,6 @@
 # 📍 FE Pick 펩픽 
 
-> 프론트엔드 스택의 기초 개념 퀴즈 플랫폼
+> 프론트엔드 스택의 기초 개념 퀴즈 플랫폼 [펩픽](https://fepick.me/)
 
 
 ## 💡 Description
