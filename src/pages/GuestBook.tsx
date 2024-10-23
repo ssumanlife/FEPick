@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react"
 import { useLocation } from "react-router-dom"
 import { v4 as uuidv4 } from "uuid"
 
-const COUNT_PER_PAGE = 6
+const COUNT_PER_PAGE = 5
 const GuestBook = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [commentData, setCommentData] = useState<GuestBookData[]>([])
@@ -112,8 +112,8 @@ const GuestBook = () => {
         {limitData.map((item) => (
           <li key={item.id}>
             <div>
-              <strong>{item.name}</strong>
-              <span>{item.createdAt}</span>
+              <span>{item.name}</span>
+              <span css={{ fontSize: "14px", color: "#888" }}>{item.createdAt}</span>
             </div>
             <p>{item.content}</p>
           </li>
@@ -194,10 +194,6 @@ const comentList = css`
       line-height: 20px;
       margin: 10px 10px 30px;
       font-size: 14px;
-    }
-    span {
-      font-size: 14px;
-      color: #888;
     }
   }
   ::-webkit-scrollbar {
