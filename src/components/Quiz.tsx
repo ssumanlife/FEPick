@@ -78,8 +78,8 @@ const Quiz = () => {
       <div css={{ display: "flex", flexDirection: "column" }}>
         <div css={questionArea}>
           <div css={timeBar(width)}> </div>
-          <h1 css={{ fontSize: "16px" }}>Question {selectedQuestion.id}</h1>
-          <h1 css={{ padding: "30px 20px 20px", fontSize: "18px", lineHeight: "1.5" }}>{selectedQuestion.question}</h1>
+          <p>Question {selectedQuestion.id}</p>
+          <p css={{ padding: "30px 20px 20px", lineHeight: "1.5" }}>{selectedQuestion.question}</p>
           <Questions
             options={selectedQuestion.options}
             answer={selectedQuestion.answer}
@@ -87,7 +87,9 @@ const Quiz = () => {
             stop={stop}
             warningRef={warningRef}
           />
-          <p>정답: {numOfCorrect} / 총 문항: 10</p>
+          <p css={{ display: "flex", justifyContent: "center", marginTop: "30px" }}>
+            정답: {numOfCorrect} / 총 문항: 10
+          </p>
           {timeover ? <TimeOver /> : null}
         </div>
       </div>
@@ -102,9 +104,6 @@ const questionArea = css`
   box-sizing: border-box;
   padding: 20px;
   & p {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
     font-size: 18px;
   }
 `
