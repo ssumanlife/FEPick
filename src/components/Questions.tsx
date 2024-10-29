@@ -11,9 +11,10 @@ interface QuestionsProps {
   setStop: (stop: boolean) => void
   stop: boolean
   warningRef: React.RefObject<HTMLAudioElement>
+  sound: boolean
 }
 
-const Questions = ({ options = [], answer, setStop, stop, warningRef }: QuestionsProps) => {
+const Questions = ({ options = [], answer, setStop, stop, warningRef, sound }: QuestionsProps) => {
   const [checkedIndex, setCheckedIndex] = useState<number | null>(null)
   const [checkedOption, setCheckedOption] = useState<string | null>(null)
   const [correctIndex, setCorrectIndex] = useState<number | null>(null)
@@ -48,7 +49,7 @@ const Questions = ({ options = [], answer, setStop, stop, warningRef }: Question
       setCorrect(true)
       setStop(true)
       incrementCorrect()
-      if (bingoRef.current) {
+      if (sound && bingoRef.current) {
         bingoRef.current.play()
       }
     } else {
