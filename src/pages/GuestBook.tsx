@@ -1,5 +1,6 @@
 import useGetCommentData from "@/api/useGetCommnetData"
 import useUpdateCommentData from "@/api/useUpdateCommentData"
+import Loading from "@/components/Loading"
 import { GuestBookData } from "@/types/guestBookType"
 import { css } from "@emotion/react"
 import { Pagination } from "@mui/material"
@@ -14,7 +15,7 @@ const GuestBook = () => {
   const [isComposing, setIsComposing] = useState(false)
   const nameRef = useRef<HTMLInputElement>(null)
   const contentRef = useRef<HTMLTextAreaElement>(null)
-  const { data } = useGetCommentData()
+  const { data, isLoading } = useGetCommentData()
   const { mutate } = useUpdateCommentData()
   const location = useLocation()
   const today = new Date()
@@ -39,7 +40,10 @@ const GuestBook = () => {
 
   const fetchComment = async () => {
     if (nameRef.current && contentRef.current) {
-      if (nameRef.current.value.replace(/ /g, "") !== "" && contentRef.current.value.replace(/ /g, "")) {
+      if (
+        nameRef.current.value.replace(/ /g, "") !== "" &&
+        contentRef.current.value.replace(/ /g, "")
+      ) {
         const newCommentData = {
           id: uuidv4(),
           name: nameRef.current.value,
@@ -109,15 +113,19 @@ const GuestBook = () => {
         />
       </form>
       <ul css={comentList}>
-        {limitData.map((item) => (
-          <li key={item.id}>
-            <div>
-              <span>{item.name}</span>
-              <span css={{ fontSize: "14px", color: "#888" }}>{item.createdAt}</span>
-            </div>
-            <p>{item.content}</p>
-          </li>
-        ))}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          limitData.map((item) => (
+            <li key={item.id}>
+              <div>
+                <span>{item.name}</span>
+                <span css={{ fontSize: "14px", color: "#888" }}>{item.createdAt}</span>
+              </div>
+              <p>{item.content}</p>
+            </li>
+          ))
+        )}
       </ul>
       <div css={paginationWrapper}>
         <Pagination
