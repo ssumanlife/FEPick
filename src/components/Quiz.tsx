@@ -7,12 +7,14 @@ import useNumOfCorrectStore from "@/stores/useNumOfCorrectStore"
 import TimeOver from "@/components/TimeOver"
 import warningSound from "@/assets/warningSound.mp3"
 import NotFound from "@/pages/NotFound"
+import { Volume2, VolumeOff } from "lucide-react"
 
 const Quiz = () => {
   const [stop, setStop] = useState(false)
   const [startTime, setStartTime] = useState<number | null>(null)
   const [elapsedTime, setElapsedTime] = useState(0)
   const [timeover, setTimeOver] = useState(false)
+  const [sound, setSound] = useState(true)
   const [selectedQuestion, setSelectedQuestion] = useState<any>([])
   const numOfCorrect = useNumOfCorrectStore((state) => state.numOfCorrect)
   const { menu, title } = useParams()
@@ -62,7 +64,7 @@ const Quiz = () => {
     if (width >= 100 && !stop) {
       setStop(true)
       setTimeOver(true)
-      if (warningRef.current) {
+      if (sound && warningRef.current) {
         warningRef.current.play()
       }
     }
@@ -78,7 +80,10 @@ const Quiz = () => {
       <div css={{ display: "flex", flexDirection: "column" }}>
         <div css={questionArea}>
           <div css={timeBar(width)}> </div>
-          <p>Question {selectedQuestion.id}</p>
+          <div css={titleArea}>
+            <p>Question {selectedQuestion.id}</p>
+            <button onClick={() => setSound(!sound)}>{sound ? <Volume2 /> : <VolumeOff />}</button>
+          </div>
           <p css={{ padding: "30px 20px 20px", lineHeight: "1.5" }}>{selectedQuestion.question}</p>
           <Questions
             options={selectedQuestion.options}
@@ -86,6 +91,7 @@ const Quiz = () => {
             setStop={setStop}
             stop={stop}
             warningRef={warningRef}
+            sound={sound}
           />
           <p css={{ display: "flex", justifyContent: "center", marginTop: "30px" }}>
             정답: {numOfCorrect} / 총 문항: 10
@@ -124,5 +130,17 @@ const timeBar = (width: number) => css`
     height: 100%;
     background-color: #ff735e;
     border-radius: 3px;
+  }
+`
+
+const titleArea = css`
+  display: flex;
+  justify-content: space-between;
+  & button {
+    color: #fff;
+    transition: transform 0.2s ease-in-out;
+    :hover {
+      transform: scale(1.2);
+    }
   }
 `
