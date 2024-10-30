@@ -1,4 +1,4 @@
-import useGetCommentData from "@/api/useGetCommnetData"
+import useGetCommentData from "@/api/useGetCommentData"
 import useUpdateCommentData from "@/api/useUpdateCommentData"
 import Loading from "@/components/Loading"
 import { GuestBookData } from "@/types/guestBookType"
@@ -25,7 +25,6 @@ const GuestBook = () => {
       month: "2-digit",
       day: "2-digit",
     })
-    .replace(/\./g, ".")
     .replace(/\.$/, "")
 
   useEffect(() => {
@@ -112,7 +111,7 @@ const GuestBook = () => {
           }}
         />
       </form>
-      <ul css={comentList}>
+      <ul css={commentList}>
         {isLoading ? (
           <Loading />
         ) : (
@@ -188,7 +187,7 @@ const formstyle = css`
     }
   }
 `
-const comentList = css`
+const commentList = css`
   padding: 0 30px 45px;
   overflow-y: scroll;
   li {
