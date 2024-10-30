@@ -7,7 +7,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: "*",
+    origin: ["https://fepick.me", "http://localhost:5173"],
   })
 )
 app.use(express.json())
