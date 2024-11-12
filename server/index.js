@@ -14,14 +14,16 @@ app.use(express.json())
 dotenv.config()
 
 const PORT = process.env.VITE_PORT
-const MONGOURL = process.env.VITE_MONGO_URL
+const MONGO_URL = process.env.VITE_MONGO_URL
+const ENDPOINT = process.env.VITE_ENDPOINT
+const COLLECTION = process.env.VITE_COLLECTION
 
 const dbName = "fepick"
 let database
 
 const connectToDB = async () => {
   try {
-    const client = await MongoClient.connect(MONGOURL)
+    const client = await MongoClient.connect(MONGO_URL)
     database = client.db(dbName)
     app.listen(PORT, "0.0.0.0", () => console.log(`listening on port ${PORT}`))
   } catch (error) {
@@ -30,9 +32,9 @@ const connectToDB = async () => {
 }
 connectToDB()
 
-app.get("/api/guestBook", async (req, res) => {
+app.get(ENDPOINT, async (req, res) => {
   try {
-    const result = await database.collection("guestBook").find({}).toArray()
+    const result = await database.collection(COLLECTION).find({}).toArray()
 
     return res.send(result)
   } catch (error) {
@@ -41,9 +43,9 @@ app.get("/api/guestBook", async (req, res) => {
   }
 })
 
-app.put("/api/guestBook", async (req, res) => {
+app.put(ENDPOINT, async (req, res) => {
   try {
-    const result = await database.collection("guestBook").insertOne(req.body)
+    const result = await database.collection(COLLECTION).insertOne(req.body)
     return res.send(result)
   } catch (error) {
     console.error("방명록 업데이트 실패", error)
