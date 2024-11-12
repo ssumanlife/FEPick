@@ -97,7 +97,7 @@ const Quiz = () => {
           <p css={{ display: "flex", justifyContent: "center", marginTop: "30px" }}>
             정답: {numOfCorrect} / 총 문항: 10
           </p>
-          {timeover ? <TimeOver /> : null}
+          {timeover && <TimeOver />}
         </div>
       </div>
     </section>
