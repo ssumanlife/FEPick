@@ -8,6 +8,7 @@ import TimeOver from "@/components/TimeOver"
 import warningSound from "@/assets/warningSound.mp3"
 import NotFound from "@/pages/NotFound"
 import { Volume2, VolumeOff } from "lucide-react"
+import { QuestionData } from "@/types/quizType"
 
 const Quiz = () => {
   const [stop, setStop] = useState(false)
@@ -15,7 +16,7 @@ const Quiz = () => {
   const [elapsedTime, setElapsedTime] = useState(0)
   const [timeover, setTimeOver] = useState(false)
   const [sound, setSound] = useState(true)
-  const [selectedQuestion, setSelectedQuestion] = useState<any>([])
+  const [selectedQuestion, setSelectedQuestion] = useState<QuestionData | undefined>(undefined)
   const numOfCorrect = useNumOfCorrectStore((state) => state.numOfCorrect)
   const { menu, title } = useParams()
   const location = useLocation()
