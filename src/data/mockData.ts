@@ -11,8 +11,14 @@ export const data = {
         },
         {
           id: 2,
-          question: "HTML5에서 새롭게 추가된 입력 필드 속성 중 이메일 주소를 입력받기 위한 속성은 무엇입니까?",
-          options: ['<input type="email">', '<input type="text">', '<input type="password">', '<input type="url">'],
+          question:
+            "HTML5에서 새롭게 추가된 입력 필드 속성 중 이메일 주소를 입력받기 위한 속성은 무엇입니까?",
+          options: [
+            '<input type="email">',
+            '<input type="text">',
+            '<input type="password">',
+            '<input type="url">',
+          ],
           answer: '<input type="email">',
         },
         {
@@ -100,7 +106,8 @@ export const data = {
         },
         {
           id: 6,
-          question: "HTML5에서 웹 애플리케이션의 로컬 데이터 저장을 위해 사용하는 API는 무엇입니까?",
+          question:
+            "HTML5에서 웹 애플리케이션의 로컬 데이터 저장을 위해 사용하는 API는 무엇입니까?",
           options: ["localStorage", "sessionStorage", "cookie", "IndexedDB"],
           answer: "localStorage",
         },
@@ -373,12 +380,18 @@ export const data = {
         {
           id: 6,
           question: "CSS에서 특정 화면 크기 이상일 때만 스타일을 적용하려면 어떻게 해야 합니까?",
-          options: ["@media (min-width: 768px)", "@keyframes", "@font-face", "@media (max-width: 768px)"],
+          options: [
+            "@media (min-width: 768px)",
+            "@keyframes",
+            "@font-face",
+            "@media (max-width: 768px)",
+          ],
           answer: "@media (min-width: 768px)",
         },
         {
           id: 7,
-          question: "CSS에서 상위 요소의 크기에 맞춰 하위 요소의 크기를 비율로 설정하려면 어떤 단위를 사용합니까?",
+          question:
+            "CSS에서 상위 요소의 크기에 맞춰 하위 요소의 크기를 비율로 설정하려면 어떤 단위를 사용합니까?",
           options: ["%", "px", "em", "rem"],
           answer: "%",
         },
@@ -390,7 +403,8 @@ export const data = {
         },
         {
           id: 9,
-          question: "CSS에서 여러 개의 선택자에 동일한 스타일을 적용할 때 사용하는 구분자는 무엇입니까?",
+          question:
+            "CSS에서 여러 개의 선택자에 동일한 스타일을 적용할 때 사용하는 구분자는 무엇입니까?",
           options: [", (콤마)", "+ (플러스)", "> (꺾은 화살표)", "~ (틸드)"],
           answer: ", (콤마)",
         },
@@ -474,7 +488,12 @@ export const data = {
         {
           id: 10,
           question: "JavaScript에서 클래스는 어떻게 정의합니까?",
-          options: ["class 키워드 사용", "function 키워드 사용", "객체 리터럴 사용", "Arrow 함수 사용"],
+          options: [
+            "class 키워드 사용",
+            "function 키워드 사용",
+            "객체 리터럴 사용",
+            "Arrow 함수 사용",
+          ],
           answer: "class 키워드 사용",
         },
       ],
@@ -539,7 +558,12 @@ export const data = {
         {
           id: 10,
           question: "JavaScript에서 깊은 복사를 하기 위해 사용하는 방법은?",
-          options: ["JSON.parse(JSON.stringify())", "Object.assign()", "Array.slice()", "Array.splice()"],
+          options: [
+            "JSON.parse(JSON.stringify())",
+            "Object.assign()",
+            "Array.slice()",
+            "Array.splice()",
+          ],
           answer: "JSON.parse(JSON.stringify())",
         },
       ],
@@ -591,14 +615,20 @@ export const data = {
         },
         {
           id: 8,
-          question: "JavaScript에서 특정 메서드를 미리 정의된 매개변수로 호출하기 위해 사용하는 것은 무엇입니까?",
+          question:
+            "JavaScript에서 특정 메서드를 미리 정의된 매개변수로 호출하기 위해 사용하는 것은 무엇입니까?",
           options: ["apply()", "call()", "bind()", "setTimeout()"],
           answer: "call()",
         },
         {
           id: 9,
           question: "JavaScript에서 객체의 속성을 동적으로 정의할 때 사용하는 구문은?",
-          options: ["Object.defineProperty()", "Object.freeze()", "Object.assign()", "Object.create()"],
+          options: [
+            "Object.defineProperty()",
+            "Object.freeze()",
+            "Object.assign()",
+            "Object.create()",
+          ],
           answer: "Object.defineProperty()",
         },
         {
@@ -606,6 +636,83 @@ export const data = {
           question: "JavaScript에서 NaN은 무엇을 의미합니까?",
           options: ["숫자가 아님", "널 값", "정의되지 않은 값", "0"],
           answer: "숫자가 아님",
+        },
+      ],
+    },
+    {
+      title: "var, let, const",
+      quiz: [
+        {
+          id: 1,
+          question: "JavaScript에서 재할당이 가능한 변수 선언 방법은 무엇입니까?",
+          options: ["var", "let, const", "var, let", "모두 포함"],
+          answer: "var, let",
+        },
+        {
+          id: 2,
+          question: "JavaScript에서 재선언이 가능한 변수 선언 방법은 무엇입니까?",
+          options: ["var", "let, const", "var, let", "모두 포함"],
+          answer: "var",
+        },
+        {
+          id: 3,
+          question: "선언이 호이스팅 되는 선언 방법은 무엇입니까?",
+          options: ["var", "let, const", "var, let", "모두 포함"],
+          answer: "모두 포함",
+        },
+        {
+          id: 4,
+          question: "블럭 레벨의 스코프로 사용되는 선언 방법은 무엇입니까?",
+          options: ["var", "let, const", "var, let", "모두 포함"],
+          answer: "let, const",
+        },
+        {
+          id: 5,
+          question:
+            "let apple = '사과'의 선언 위치보다 상단에서 console.log(apple)로 출력한 결과는 무엇입니까?",
+          options: ["undefined", "null", "reference error", "사과"],
+          answer: "reference error",
+        },
+        {
+          id: 6,
+          question:
+            "var apple = '사과'의 선언 위치보다 상단에서 console.log(apple)로 출력한 결과는 무엇입니까?",
+          options: ["undefined", "null", "reference error", "사과"],
+          answer: "undefined",
+        },
+        {
+          id: 7,
+          question: "let과 const가 공식적으로 탄생한 자바스크립트의 표준 버전은 무엇입니까?",
+          options: ["ES3", "ES4", "ES5", "ES6"],
+          answer: "ES6",
+        },
+        {
+          id: 8,
+          question: "let과 const로 선언된 변수는 초기화되기 전까지 어떤 스코프에 위치해있을까요?",
+          options: ["window", "TDZ", "전역 스코프", "지역 스코프"],
+          answer: "TDZ",
+        },
+        {
+          id: 9,
+          question: "const로 선언된 변수에서 객체 자체를 재할당하려고 하면 어떤 일이 발생합니까?",
+          options: [
+            "재할당이 가능하다",
+            "TypeError가 발생한다",
+            "객체 내부 속성이 변경된다",
+            "undefined가 반환된다",
+          ],
+          answer: "TypeError가 발생한다",
+        },
+        {
+          id: 10,
+          question: "let과 var의 가장 큰 차이점 중 하나는 무엇입니까?",
+          options: [
+            "let은 함수 스코프, var는 블록 스코프",
+            "let은 블록 스코프, var는 함수 스코프",
+            "let은 호이스팅되지 않는다",
+            "var는 재할당이 불가능하다",
+          ],
+          answer: "let은 블록 스코프, var는 함수 스코프",
         },
       ],
     },
@@ -635,7 +742,12 @@ export const data = {
         {
           id: 4,
           question: "TypeScript에서 선택적 속성을 나타내기 위해 사용하는 문법은 무엇입니까?",
-          options: ["속성명 뒤에 물음표(?)", "속성명 앞에 느낌표(!)", "속성명 앞에 물음표(?)", "속성명 뒤에 느낌표(!)"],
+          options: [
+            "속성명 뒤에 물음표(?)",
+            "속성명 앞에 느낌표(!)",
+            "속성명 앞에 물음표(?)",
+            "속성명 뒤에 느낌표(!)",
+          ],
           answer: "속성명 뒤에 물음표(?)",
         },
         {
@@ -670,7 +782,12 @@ export const data = {
         {
           id: 9,
           question: "TypeScript에서 인터페이스(interface)를 사용하여 할 수 없는 것은?",
-          options: ["객체의 형태 정의", "함수의 시그니처 정의", "클래스의 메서드 정의", "함수 구현"],
+          options: [
+            "객체의 형태 정의",
+            "함수의 시그니처 정의",
+            "클래스의 메서드 정의",
+            "함수 구현",
+          ],
           answer: "함수 구현",
         },
         {
@@ -686,7 +803,8 @@ export const data = {
       quiz: [
         {
           id: 1,
-          question: "TypeScript에서 객체의 특정 속성을 읽기 전용으로 만들기 위해 사용하는 키워드는?",
+          question:
+            "TypeScript에서 객체의 특정 속성을 읽기 전용으로 만들기 위해 사용하는 키워드는?",
           options: ["readonly", "const", "final", "static"],
           answer: "readonly",
         },
@@ -714,7 +832,8 @@ export const data = {
         },
         {
           id: 4,
-          question: "TypeScript에서 함수 반환 타입을 명시하지 않으면 기본적으로 어떤 타입이 추론됩니까?",
+          question:
+            "TypeScript에서 함수 반환 타입을 명시하지 않으면 기본적으로 어떤 타입이 추론됩니까?",
           options: ["void", "any", "undefined", "null"],
           answer: "any",
         },
@@ -743,7 +862,8 @@ export const data = {
         },
         {
           id: 8,
-          question: "TypeScript에서 `strictNullChecks` 옵션을 활성화하면 발생하는 효과는 무엇입니까?",
+          question:
+            "TypeScript에서 `strictNullChecks` 옵션을 활성화하면 발생하는 효과는 무엇입니까?",
           options: [
             "null과 undefined를 명시적으로 처리해야 합니다.",
             "모든 변수에 기본값으로 null이 할당됩니다.",
@@ -765,7 +885,8 @@ export const data = {
         },
         {
           id: 10,
-          question: "TypeScript에서 모든 타입을 허용하지만 타입 안전성을 유지하기 위한 안전한 타입은 무엇입니까?",
+          question:
+            "TypeScript에서 모든 타입을 허용하지만 타입 안전성을 유지하기 위한 안전한 타입은 무엇입니까?",
           options: ["unknown", "any", "never", "void"],
           answer: "unknown",
         },
@@ -840,7 +961,12 @@ export const data = {
         {
           id: 9,
           question: "TypeScript에서 private 속성에 접근할 수 없는 경우는 언제입니까?",
-          options: ["상속받은 클래스에서", "동일한 클래스에서", "같은 모듈 내에서", "다른 파일에서"],
+          options: [
+            "상속받은 클래스에서",
+            "동일한 클래스에서",
+            "같은 모듈 내에서",
+            "다른 파일에서",
+          ],
           answer: "다른 파일에서",
         },
         {
@@ -870,8 +996,14 @@ export const data = {
         },
         {
           id: 3,
-          question: "React 컴포넌트의 생명주기 메서드 중 컴포넌트가 처음 렌더링된 후 호출되는 메서드는?",
-          options: ["componentDidMount", "componentWillUnmount", "componentDidUpdate", "shouldComponentUpdate"],
+          question:
+            "React 컴포넌트의 생명주기 메서드 중 컴포넌트가 처음 렌더링된 후 호출되는 메서드는?",
+          options: [
+            "componentDidMount",
+            "componentWillUnmount",
+            "componentDidUpdate",
+            "shouldComponentUpdate",
+          ],
           answer: "componentDidMount",
         },
         {
@@ -900,7 +1032,12 @@ export const data = {
         {
           id: 7,
           question: "React에서 useEffect Hook은 주로 무엇을 위해 사용됩니까?",
-          options: ["부수 효과(side effects)를 처리하기 위해", "상태 관리를 위해", "UI 렌더링을 위해", "라우팅을 위해"],
+          options: [
+            "부수 효과(side effects)를 처리하기 위해",
+            "상태 관리를 위해",
+            "UI 렌더링을 위해",
+            "라우팅을 위해",
+          ],
           answer: "부수 효과(side effects)를 처리하기 위해",
         },
         {
@@ -928,14 +1065,20 @@ export const data = {
       quiz: [
         {
           id: 1,
-          question: "React에서 클래스형 컴포넌트에서 상태를 관리하기 위해 사용하는 객체는 무엇입니까?",
+          question:
+            "React에서 클래스형 컴포넌트에서 상태를 관리하기 위해 사용하는 객체는 무엇입니까?",
           options: ["this.state", "this.props", "this.effect", "this.context"],
           answer: "this.state",
         },
         {
           id: 2,
           question: "React에서 클릭 이벤트와 같은 사용자 이벤트를 처리하는 방법은?",
-          options: ["onClick 속성 사용", "onEvent 속성 사용", "addEventListener 사용", "dispatchEvent 사용"],
+          options: [
+            "onClick 속성 사용",
+            "onEvent 속성 사용",
+            "addEventListener 사용",
+            "dispatchEvent 사용",
+          ],
           answer: "onClick 속성 사용",
         },
         {
@@ -975,13 +1118,23 @@ export const data = {
         {
           id: 7,
           question: "React에서 useRef Hook은 주로 무엇을 위해 사용됩니까?",
-          options: ["DOM 요소에 접근하기 위해", "상태를 관리하기 위해", "비동기 작업을 처리하기 위해", "라우팅을 위해"],
+          options: [
+            "DOM 요소에 접근하기 위해",
+            "상태를 관리하기 위해",
+            "비동기 작업을 처리하기 위해",
+            "라우팅을 위해",
+          ],
           answer: "DOM 요소에 접근하기 위해",
         },
         {
           id: 8,
           question: "React에서 컴포넌트가 업데이트된 후에 호출되는 생명주기 메서드는?",
-          options: ["componentDidUpdate", "componentDidMount", "componentWillUnmount", "shouldComponentUpdate"],
+          options: [
+            "componentDidUpdate",
+            "componentDidMount",
+            "componentWillUnmount",
+            "shouldComponentUpdate",
+          ],
           answer: "componentDidUpdate",
         },
         {
@@ -1016,7 +1169,8 @@ export const data = {
         },
         {
           id: 3,
-          question: "React에서 useEffect Hook의 두 번째 매개변수로 전달되는 배열은 무엇을 의미합니까?",
+          question:
+            "React에서 useEffect Hook의 두 번째 매개변수로 전달되는 배열은 무엇을 의미합니까?",
           options: ["의존성 배열", "상태 배열", "props 배열", "리듀서 배열"],
           answer: "의존성 배열",
         },
@@ -1028,7 +1182,8 @@ export const data = {
         },
         {
           id: 5,
-          question: "React에서 부모 컴포넌트가 자식 컴포넌트의 DOM에 직접 접근하려면 무엇을 사용해야 합니까?",
+          question:
+            "React에서 부모 컴포넌트가 자식 컴포넌트의 DOM에 직접 접근하려면 무엇을 사용해야 합니까?",
           options: ["ref", "props", "state", "context"],
           answer: "ref",
         },
@@ -1052,7 +1207,12 @@ export const data = {
         {
           id: 8,
           question: "React에서 컴포넌트가 마운트될 때 한 번만 실행하고 싶은 코드를 배치하는 곳은?",
-          options: ["useEffect Hook의 빈 의존성 배열", "useState Hook", "useReducer Hook", "useMemo Hook"],
+          options: [
+            "useEffect Hook의 빈 의존성 배열",
+            "useState Hook",
+            "useReducer Hook",
+            "useMemo Hook",
+          ],
           answer: "useEffect Hook의 빈 의존성 배열",
         },
         {
@@ -1093,7 +1253,8 @@ export const data = {
         },
         {
           id: 3,
-          question: "Next.js에서 서버 사이드 렌더링(SSR)을 구현하기 위해 사용하는 함수는 무엇입니까?",
+          question:
+            "Next.js에서 서버 사이드 렌더링(SSR)을 구현하기 위해 사용하는 함수는 무엇입니까?",
           options: ["getServerSideProps", "getStaticProps", "useEffect", "useState"],
           answer: "getServerSideProps",
         },
@@ -1123,7 +1284,8 @@ export const data = {
         },
         {
           id: 8,
-          question: "Next.js에서 정적 사이트 생성을 통해 미리 생성된 페이지를 배포하는 방식은 무엇입니까?",
+          question:
+            "Next.js에서 정적 사이트 생성을 통해 미리 생성된 페이지를 배포하는 방식은 무엇입니까?",
           options: [
             "Static Site Generation (SSG)",
             "Server Side Rendering (SSR)",
@@ -1134,13 +1296,15 @@ export const data = {
         },
         {
           id: 9,
-          question: "Next.js에서 페이지 간 데이터를 공유하기 위해 사용할 수 있는 데이터 페칭 방법은 무엇입니까?",
+          question:
+            "Next.js에서 페이지 간 데이터를 공유하기 위해 사용할 수 있는 데이터 페칭 방법은 무엇입니까?",
           options: ["getStaticProps", "getServerSideProps", "getInitialProps", "모두 해당"],
           answer: "모두 해당",
         },
         {
           id: 10,
-          question: "Next.js에서 Link 컴포넌트를 사용할 때, href 외에 필수적으로 사용되는 속성은 무엇입니까?",
+          question:
+            "Next.js에서 Link 컴포넌트를 사용할 때, href 외에 필수적으로 사용되는 속성은 무엇입니까?",
           options: ["없음", "as", "replace", "passHref"],
           answer: "없음",
         },
@@ -1157,7 +1321,8 @@ export const data = {
         },
         {
           id: 2,
-          question: "Next.js에서 Incremental Static Regeneration (ISR)을 사용할 때의 주요 이점은 무엇입니까?",
+          question:
+            "Next.js에서 Incremental Static Regeneration (ISR)을 사용할 때의 주요 이점은 무엇입니까?",
           options: [
             "페이지를 선택적으로 업데이트할 수 있다.",
             "모든 페이지를 실시간으로 생성한다.",
@@ -1175,7 +1340,8 @@ export const data = {
             "getStaticProps는 클라이언트 측에서 실행되고, getServerSideProps는 서버에서 실행됩니다.",
             "두 함수는 동일하게 동작합니다.",
           ],
-          answer: "getStaticProps는 빌드 시 데이터를 가져오고, getServerSideProps는 요청 시 데이터를 가져옵니다.",
+          answer:
+            "getStaticProps는 빌드 시 데이터를 가져오고, getServerSideProps는 요청 시 데이터를 가져옵니다.",
         },
         {
           id: 4,
@@ -1185,7 +1351,8 @@ export const data = {
         },
         {
           id: 5,
-          question: "Next.js에서 API 라우트를 만드는 경우 기본적으로 어떤 HTTP 메서드를 지원합니까?",
+          question:
+            "Next.js에서 API 라우트를 만드는 경우 기본적으로 어떤 HTTP 메서드를 지원합니까?",
           options: ["GET과 POST", "GET만", "POST만", "모든 HTTP 메서드"],
           answer: "GET과 POST",
         },
@@ -1219,14 +1386,20 @@ export const data = {
         },
         {
           id: 9,
-          question: "Next.js에서 정적 사이트와 서버사이드 렌더링을 혼합하여 사용하는 것을 무엇이라고 합니까?",
+          question:
+            "Next.js에서 정적 사이트와 서버사이드 렌더링을 혼합하여 사용하는 것을 무엇이라고 합니까?",
           options: ["Mixed Rendering", "Hybrid Rendering", "SSR with SSG", "Dynamic Rendering"],
           answer: "Hybrid Rendering",
         },
         {
           id: 10,
           question: "Next.js에서 페이지를 비동기로 미리 렌더링할 수 있는 방법은 무엇입니까?",
-          options: ["Incremental Static Regeneration (ISR)", "getStaticProps", "getServerSideProps", "useEffect"],
+          options: [
+            "Incremental Static Regeneration (ISR)",
+            "getStaticProps",
+            "getServerSideProps",
+            "useEffect",
+          ],
           answer: "Incremental Static Regeneration (ISR)",
         },
       ],
@@ -1260,7 +1433,12 @@ export const data = {
         {
           id: 4,
           question: "Next.js에서 API 라우트에서 비동기 함수를 처리할 때 주로 사용하는 방법은?",
-          options: ["async/await", "콜백(callback)", "프로미스 체이닝(Promise chaining)", "동기 함수 사용"],
+          options: [
+            "async/await",
+            "콜백(callback)",
+            "프로미스 체이닝(Promise chaining)",
+            "동기 함수 사용",
+          ],
           answer: "async/await",
         },
         {
